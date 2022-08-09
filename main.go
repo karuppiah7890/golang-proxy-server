@@ -8,7 +8,12 @@ import (
 type handler struct{}
 
 func (h handler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodGet {
+		w.WriteHeader(400)
+		return
+	}
 
+	w.WriteHeader(200)
 }
 
 func main() {
